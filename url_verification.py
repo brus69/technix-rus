@@ -8,7 +8,8 @@ url_data = 'url_data.txt'
 
 def check_url_status(url):
     try:
-        r = requests.get(url.strip(), timeout=5)
+        payload = {'utm': 'test'} #Добавляем тестовые параметры
+        r = requests.get(url.strip(), timeout=5, params=payload)
         r.raise_for_status()  # Проверка на HTTP ошибки
         soup = BeautifulSoup(r.text, 'html.parser')
         h1_tag = soup.h1
